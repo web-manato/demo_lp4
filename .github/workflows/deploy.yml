@@ -1,0 +1,38 @@
+name: Deploy to Xserver
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Deploy to Xserver via FTP
+      uses: sebastianpopp/ftp-action@releases/v2
+      with:
+        host: sv12006.star.ne.jp
+        user: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        localDir: './'
+        remoteDir: '/ss140453.stars.ne.jp/public_html/completion'
+        exclude: |
+          README.md
+          README.txt
+          .github/
+          .git/
+          .gitignore
+          .gitattributes
+          node_modules/
+          package.json
+          package-lock.json
+          yarn.lock
+          .env
+          .env.local
+          .env.example
+          *.log
+          .DS_Store
+          Thumbs.db
