@@ -1,0 +1,159 @@
+@use "_mixin";
+@use "_variable" as g;
+
+// ベーススタイル
+body{
+    font-size: 16px;
+    font-family: g.$font-family-jp;
+    background: g.$bg-base;
+    color: g.$font-color-white;
+}
+span{
+    display: block;
+}
+// PC
+@include mixin.mq("pc"){
+    body{
+        font-size: 18px;
+    }
+}
+
+// ブロックモジュール
+// コンテンツ幅
+.bl_cont_inner{
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+// PC
+@include mixin.mq("pc"){
+    .bl_cont_inner{
+        width: 80%;
+    }
+}
+// 画像
+.bl_imgWrapper img{
+    width: 100%;
+}
+
+// ユニークモジュール
+.un_lb__reverse{
+    display: none;
+}
+@include mixin.mq("tab"){
+    .un_lb{
+        display: none;
+    }
+    .un_lb__reverse{
+        display: block;
+    }
+}
+.un_hidden{
+    display: none;
+}
+
+
+
+// レイアウト
+// コンテンツ
+.ly_cont{
+    padding: 32px 0;
+
+    @include mixin.mq("pc") {
+        padding: 60px 0;
+    }
+}
+.ly_cont__single{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 64px 0;
+
+    @include mixin.mq("pc") {
+        padding: 80px 0;
+    }
+}
+// ボタン
+.ly_btn{
+    text-align: center;
+    margin-top: 45px;
+}
+
+
+// ブロックモジュール
+// セクションチェンジ
+.bl_secChange_imgWrapper{
+    max-height: 400px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img{
+        width: 100%;
+        height: auto;
+        max-height: 100%;
+        object-fit: cover;
+        object-position: center center;
+    }
+}
+
+
+
+// エレメントモジュール
+// セクションタイトル
+// 日本語
+.el_secTtl_jp{
+    font-size: clamp(24px, 5vw, 42px);
+    font-weight: 600;
+    line-height: 150%;
+}
+.el_secTtl_jp_separate{
+    display: inline-block;
+}
+// 英語
+.el_secTtl_en{
+    font-size: clamp(16px, 3vw, 24px);
+    margin-top: 4px;
+    font-family: g.$font-family-en;
+    color: g.$font-color-accent;
+    margin-left: 5px;
+
+    @include mixin.mq("pc") {
+        margin-left: 12px;
+    }
+}
+
+// ボタン
+.el_btn{
+    display: inline-block;
+    padding: 12px 50px;
+    color: g.$font-color-base;
+    border: 1px solid g.$border-accent;
+    background: g.$bg-accent;
+    position: relative;
+    transition: all 0.3s;
+
+    &::before{
+        display: block;
+        content: "";
+        width: 25px;
+        height: 1px;
+        background: g.$border-base;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transition: all 0.3s;
+    }
+
+
+    &:hover{
+        background: g.$bg-base;
+        color: g.$font-color-white;
+    }
+    &:hover::before{
+        background: g.$bg-main;
+        width: 30px;
+    }
+}

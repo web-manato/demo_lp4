@@ -1,0 +1,479 @@
+@use "_mixin";
+@use "_variable" as g;
+
+
+// レイアウト
+// キービジュアル
+.ly_kv{
+    padding-top: 80px;
+    width: 100%;
+    height: 550px;
+
+    @include mixin.mq("pc") {
+        height: 600px;
+    }
+}
+
+
+// ブロックモジュール
+// キービジュアル
+// 背景画像
+.bl_kv{
+    background-image: url(../img/kv_img-1500px.png);
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+
+    @include mixin.mq("tab") {
+        background-image: url(../img/kv_img-2000px.png);
+    }
+
+    @include mixin.mq("pc") {
+        background-image: url(../img/kv_img-2500px.png);
+    }
+}
+@supports(background-image: url(../img/kv_img-1500px.webp)){
+    .bl_kv{
+        background-image: url(../img/kv_img-1500px.webp);
+
+        @include mixin.mq("tab") {
+            background-image: url(../img/kv_img-2000px.webp);
+        }
+
+        @include mixin.mq("pc") {
+            background-image: url(../img/kv_img-2500px.webp);
+        }
+    }
+}
+
+// メインコピー
+.bl_kv_copyWrapper{
+    width: clamp(200px, 100vw, 700px);
+    padding: 25px 85px;
+    background: g.$bg-base-opa50;
+    backdrop-filter: blur(5px);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.bl_kv_copy{
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 700;
+    line-height: 150%;
+}
+
+
+// お悩みセクション
+.bl_worriersGroup{
+    margin-top: 26px;
+    display: grid;
+    gap: 16px;
+
+    @include mixin.mq("tab") {
+        margin-top: 48px;
+        gap: 28px;
+    }
+}
+// 各お悩み
+.bl_worriers{
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+
+    @include mixin.mq("pc") {
+        max-width: 800px;
+    }
+}
+.bl_worriers:nth-child(even){
+    flex-direction: row-reverse;
+}
+// 吹き出し
+.bl_worriers_cont{
+    width: 75%;
+    padding: 26px 15px;
+    line-height: 150%;
+    color: g.$font-color-base;
+    background: g.$bg-main;
+    border-radius: 18px;
+    position: relative;
+
+    &::before{
+        content: "";
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        border-left: 15px solid g.$border-main;
+        position: absolute;
+        right: -15px;
+        top: 30px;
+    }
+
+    @include mixin.mq("pc") {
+        text-align: center;
+        font-size: 22px;
+    }
+}
+.bl_worriers_cont__reverse{
+    &::before{
+        content: none;
+    }
+    &::after{
+        content: "";
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        border-right: 15px solid g.$border-main;
+        position: absolute;
+        left: -15px;
+        top: 30px;
+    }
+}
+// 画像
+.bl_worriers_imgWrapper{
+    width: 25%;
+
+    img{
+        width: 100%;
+        height: auto;
+    }
+}
+
+
+// 解決セクション
+.bl_solutionGroup{
+    margin-top: 33px;
+    display: grid;
+    gap: 15px;
+}
+.bl_solution{
+    color: g.$font-color-accent;
+    line-height: 150%;
+    display: flex;
+    gap: 8px;
+
+    &::before{
+        content: "";
+        display: block;
+        width: 10px;
+        height: 1px;
+        background: g.$border-accent;
+        margin-top: 12px;
+    }
+}
+
+
+// 実績
+.bl_workGroup{
+    margin-top: 32px;
+    display: grid;
+    gap: 16px;
+
+    @include mixin.mq("tab") {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    @include mixin.mq("pc") {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px 24px;
+    }
+}
+.bl_work{
+    width: 100%;
+    aspect-ratio: 16/9;
+
+    iframe{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+// 料金
+.bl_priceGroup{
+    margin-top: 32px;
+}
+.bl_price{
+    display: grid;
+    gap: 24px;
+
+    @include mixin.mq("pc") {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+// テーブル
+.bl_price_table{
+    tr{
+        display: block;
+    }
+    th,td{
+        padding: 10px 20px;
+    }
+    thead{
+        tr{
+            border: 1px solid g.$border-main;
+            background: g.$bg-grey;
+            text-align: center;
+
+            th{
+                display: inline-block;
+            }
+        }
+    }
+    tbody{
+        tr{
+            display: flex;
+            border: 1px solid g.$border-main;
+            background: g.$bg-black;
+            color: g.$font-color-accent;
+
+            th{
+                width: 48%;
+                border-right: 1px solid g.$border-main;
+            }
+            td{
+                width: 52%;
+            }
+        }
+    }
+}
+
+// 注釈
+.bl_annotation_list{
+    margin-top: 21px;
+    display: grid;
+    gap: 8px;
+}
+.bl_annotation_listItem{
+    line-height: 150%;
+}
+.bl_annotation_listItem_list{
+    margin-top: 5px;
+    display: grid;
+    gap: 3px;
+}
+.bl_annotation_listItem_bold{
+    display: inline-block;
+    font-weight: 700;
+}
+
+
+// ジャンル
+// テキスト類
+.bl_genre_txtGroup{
+    margin-top: 21px;
+    display: grid;
+    gap: 8px;
+}
+.bl_genre_txt{
+    line-height: 150%;
+}
+
+// 動画
+.bl_genre_list{
+    margin: 21px auto 0 auto;
+    max-width: 950px;
+    display: grid;
+    gap: 16px;
+
+    @include mixin.mq("tab") {
+        margin-top: 32px;
+        grid-template-columns: repeat(2,1fr);
+        gap: 24px;
+    }
+}
+// タイトル
+.bl_genre_listItem_ttl{
+    font-size: clamp(18px, 3vw, 26px);
+    font-weight: 600;
+    color: g.$font-color-accent;
+}
+// コンテンツ
+.bl_genre_listItem_cont{
+    margin-top: 12px;
+    width: 100%;
+    aspect-ratio: 16/9;
+
+    iframe{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+// 作業環境
+// 画像
+.bl_workSpace_imgWrapper{
+    margin-top: 28px;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+
+    img{
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        object-position: center center;
+    }
+
+    @include mixin.mq("tab") {
+        width: 80%;
+        margin: 32px auto 0 auto;
+        max-width: 900px;
+    }
+}
+
+// リスト類
+.bl_workSpace_group{
+    margin: 32px auto 0 auto;
+    display: grid;
+    gap: 24px;
+    max-width: 800px;
+
+    @include mixin.mq("pc") {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+// タイトル
+.bl_workSpace_ttl{
+    font-size: clamp(18px, 3vw, 21px);
+    font-weight: 600;
+}
+// コンテンツ
+.bl_workSpace_list{
+    margin-top: 16px;
+    display: grid;
+    gap: 8px;
+    color: g.$font-color-accent;
+}
+
+
+// お問い合わせ
+.bl_contact{
+    margin: 28px auto 0 auto;
+    display: grid;
+    gap: 16px;
+
+    @include mixin.mq("tab") {
+        max-width: 750px;
+    }
+
+    @include mixin.mq("pc") {
+        max-width: 900px;
+        margin-top: 42px;
+        gap: 32px;
+    }
+}
+// 入力フィールド共通項
+.bl_contact_ttl{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: clamp(16px, 5vw, 24px);
+
+    label{
+        line-height: 150%;
+    }
+
+    @include mixin.mq("pc") {
+        width: 40%;
+    }
+}
+fieldset{
+    display: block;
+}
+input[type="text"],
+textarea{
+    width: 100%;
+    padding: 8px 12px;
+    background: g.$bg-main;
+    border: 1px solid g.$border-accent;
+    color: g.$font-color-base;
+    margin-top: 8px;
+
+    @include mixin.mq("pc") {
+        width: 60%;
+        margin-top: 0;
+    }
+}
+textarea{
+    height: 150px;
+
+    @include mixin.mq("pc") {
+        height: 300px;
+    }
+}
+.bl_contact_line,
+.bl_contact_option{
+    display: inline-block;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    input[type="radio"]{
+        width: 15px;
+        height: 15px;
+        border: 2px solid g.$border-main;
+        border-radius: 50%;
+    }
+    input[type="radio"]:checked{
+        background: g.$bg-accent;
+    }
+
+    input[type="checkbox"]{
+        width: 15px;
+        height: 15px;
+        border: 2px solid g.$border-main;
+    }
+    input[type="checkbox"]:checked{
+        background: g.$bg-accent;
+        position: relative;
+
+        &::before{
+            content: "";
+            width: 8px;
+            height: 5px;
+            border-bottom: 2px solid g.$border-base;
+            border-left: 2px solid g.$border-base;
+            transform: rotate(-45deg);
+            position: absolute;
+            top: 2px;
+            left: 2px;
+        }
+    }
+
+    @include mixin.mq("pc") {
+        margin-top: 8;
+    }
+}
+
+// pc
+.bl_contact_name,
+.bl_contact_lineGroup,
+.bl_contact_optionGroup,
+.bl_contact_message{
+    @include mixin.mq("pc") {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px;
+    }
+}
+.bl_contact_lineGroup,
+.bl_contact_optionGroup{
+    div{
+        width: 60%;
+    }
+}
+
+
+// エレメントモジュール
+// コンタクト
+.el_required{
+    font-size: 12px;
+    background: g.$bg-accent;
+    color: g.$font-color-base;
+    padding: 5px 10px;
+    border-radius: 20px;
+}

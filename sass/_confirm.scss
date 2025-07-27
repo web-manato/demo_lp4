@@ -1,0 +1,12 @@
+@use "_mixin";
+@use "_variable" as g;
+
+// ブロックモジュール
+.bl_confirm_cont{
+    margin-top: 10px;
+    font-size: 18px;
+
+    @include mixin.mq("pc") {
+        width: 60%;
+    }
+}

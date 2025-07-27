@@ -1,0 +1,59 @@
+<!-- 関数 -->
+<?php include(dirname(__FILE__). '/php/confirm.php') ?>
+<!-- ヘッダー -->
+<?php include(dirname(__FILE__). '/php/header.php') ?>
+
+<main>
+    <section class="ly_cont ly_cont__single">
+        <div class="bl_cont_inner">
+            <!-- コンテンツ -->
+            <div class="bl_contact">
+                <!-- 名前 -->
+                <div class="bl_contact_name">
+                    <div class="bl_contact_ttl">
+                        <label for="name">お名前</label>
+                    </div>
+                    <p class="bl_confirm_cont"><?php echo htmlspecialchars($name, ENT_QUOTES, 'UTF-8'); ?></p>
+                </div>
+                <!-- 希望納期 -->
+                <fieldset>
+                    <div class="bl_contact_lineGroup">
+                        <legend class="bl_contact_ttl">
+                            ご希望納期
+                        </legend>
+                        <p class="bl_confirm_cont"><?php echo htmlspecialchars($line, ENT_QUOTES, 'UTF-8'); ?></p>
+                    </div>
+                </fieldset>
+                <!-- 希望オプション -->
+                <fieldset>
+                    <div class="bl_contact_optionGroup">
+                        <legend class="bl_contact_ttl">
+                            ご希望オプション
+                        </legend>
+                        <p class="bl_confirm_cont"><?php echo htmlspecialchars($options, ENT_QUOTES, 'UTF-8'); ?></p>
+                    </div>
+                </fieldset>
+                <!-- 内容 -->
+                <div class="bl_contact_message">
+                    <div class="bl_contact_ttl">
+                        <label for="message">内容</label>
+                    </div>
+                    <p class="bl_confirm_cont"><?php echo nl2br(htmlspecialchars($message, ENT_QUOTES, 'UTF-8')); ?></p>
+                </div>
+                <!-- サンクスページへの情報受け渡し -->
+                <form method="post" action="thanks.html">
+                    <input type="hidden" name="name" value="<?php echo $name; ?>">
+                    <input type="hidden" name="email" value="<?php echo $email; ?>">
+                    <input type="hidden" name="message" value="<?php echo $message; ?>">
+                    <div class="ly_btn ly_btn__confirm">
+                        <input class="el_btn" type="submit" name="submit" value="送信">
+                        <button class="el_btn" type="button" onclick="history.back()">戻る</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- フッター -->
+<?php include(dirname(__FILE__). '/php/footer.php') ?>

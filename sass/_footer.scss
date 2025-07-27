@@ -1,0 +1,37 @@
+@use "_mixin";
+@use "_variable" as g;
+
+// レイアウト
+.ly_footer{
+    width: 100%;
+    padding: 64px 0 0;
+}
+
+
+// ブロックモジュール
+// 背景色
+.bl_footer{
+    background: g.$bg-grey;
+}
+// ロゴ
+.bl_footer_logoWrapper{
+    margin: 0 auto;
+    width: clamp(140px, 70vw, 200px);
+    height: auto;
+
+    img{
+        width: 100%;
+        height: auto;
+    }
+}
+
+// コピーライト
+.bl_footer_copyRight_wrapper{
+    margin-top: 40px;
+    padding: 8px 0;
+    background: g.$bg-base;
+    text-align: center;
+}
+.bl_footer_copyRight{
+    color: g.$font-color-accent;
+}

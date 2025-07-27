@@ -1,0 +1,90 @@
+@use "_mixin";
+@use "_variable" as g;
+
+
+// オープンアニメーション
+.bl_openAn{
+    width: 100vw;
+    height: 100vh;
+    background: g.$bg-black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+}
+.bl_openAn_cont{
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 530px;
+}
+// コンテンツ中央配置
+.bl_openAn_cont{
+    width: 90%;
+    margin: 0 auto;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+// ロゴ
+.bl_openAn_logo{
+    text-align: center;
+    display: block;
+    font-family: g.$font-family-en;
+    font-size: clamp(48px, 12vw, 105px);
+    color: g.$font-color-white;
+}
+.bl_openAn_logo_under{
+    padding-left: 30px;
+}
+// プログレスバー
+.bl_openAn_progressGroup{
+    margin-top: 21px;
+    position: relative;
+}
+.bl_openAn_progress_grey{
+    width: 100%;
+    height: 2px;
+    background: g.$bg-grey;
+}
+.bl_openAn_progress_white{
+    width: 0;
+    height: 2px;
+    background: g.$border-base;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: progress 2s infinite ease-in-out;
+}
+@keyframes progress{
+    0% {
+        width: 0;
+        left: 0;
+    }
+    45% {
+        width: 100%;
+        left: 0;
+    }
+    55% {
+        width: 100%;
+        left: 0;
+    }
+    100% {
+        width: 0;
+        left: 100%;
+    }
+}
+// Loadingの文字列
+.bl_openAn_txt{
+    margin-top: 8px;
+    text-align: right;
+    color: g.$font-color-white;
+    font-family: g.$font-family-en;
+    font-size: 12px;
+}
+.bl_openAn_txt_point,
+.bl_openAn_txt_point2,
+.bl_openAn_txt_point3{
+    display: inline-block;
+}

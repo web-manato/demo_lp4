@@ -1,0 +1,27 @@
+@use "_mixin";
+@use "_variable" as g;
+
+// レイアウト
+.ly_thanks_ttl{
+    margin-top: 64px;
+    text-align: center;
+}
+
+
+// ブロックモジュール
+// タイトル
+.bl_thanks_ttl_jp{
+    font-size: clamp(24px, 5vw, 48px);
+    font-weight: 700;
+}
+.bl_thanks_ttl_en{
+    margin-top: 16px;
+    color: g.$font-color-accent;
+    font-size: clamp(16px, 3vw, 24px);
+}
+
+// テキスト
+.bl_thanks_txt{
+    margin-top: 48px;
+    text-align: center;
+}

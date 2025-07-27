@@ -1,0 +1,167 @@
+@use "_mixin";
+@use "_variable" as g;
+
+// レイアウト
+.ly_header{
+    width: 100%;
+    padding: 23px 0 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+
+// ブロックモジュール
+.bl_header_inner{
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1366px;
+
+    @include mixin.mq("pc") {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+    }
+}
+.bl_header{
+    display: flex;
+
+    @include mixin.mq("pc") {
+        width: 25%;
+    }
+}
+
+// ヘッダーロゴ
+.bl_header_logoWrapper{
+    width: 30%;
+    height: auto;
+    background: g.$bg-black;
+    text-align: center;
+    overflow: hidden;
+}
+
+// コンテンツ
+.bl_header_cont{
+    padding: 16px 15px;
+    background: g.$bg-accent;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include mixin.mq("pc") {
+        display: block;
+        text-align: center;
+    }
+}
+// タイトル
+.bl_header_cont_ttl{
+    font-size: 22px;
+    font-weight: 700;
+}
+
+// ハンバーガーメニュー
+.bl_header_cont_hamburger{
+    @include mixin.mq("pc") {
+        display: none;
+    }
+}
+// 背景
+.bl_header_cont_hamburger_nav{
+    width: 100vw;
+    height: 100vh;
+    transform: scale(0);
+    opacity: 0;
+    visibility: hidden;
+    background: g.$bg-white-opa70;
+    backdrop-filter: blur(5px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    transition: all 0.3s;
+
+    @include mixin.mq("pc") {
+        display: none;
+    }
+}
+// ナビゲーションメニュー
+.bl_header_cont_hamburger_nav_list{
+    display: grid;
+    gap: 12px;
+    font-size: 18px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.bl_header_cont_hamburger_nav_listItem{
+    color: g.$font-color-base;
+    border-bottom: 1px dashed g.$border-base;
+    padding-bottom: 4px;
+}
+// アクティブ時
+.is-active + .bl_header_cont_hamburger_nav{
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+// ボタン
+.bl_header_cont_hamburger_btn{
+    width: 20px;
+    height: 10px;
+    display: grid;
+    gap: 10px;
+    position: relative;
+    z-index: 20;
+}
+.bl_header_cont_hamburger_btn_line,
+.bl_header_cont_hamburger_btn_line2{
+    width: 20px;
+    height: 2px;
+    background: g.$border-base;
+    transition: all 0.3s;
+}
+// アクティブ時
+.is-active .bl_header_cont_hamburger_btn_line{
+    transform: translateY(5px) rotate(45deg);
+}
+.is-active .bl_header_cont_hamburger_btn_line2{
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+
+// pcナビゲーション
+.bl_header_nav{
+    display: none;
+    transition: all 0.3s;
+
+    @include mixin.mq("pc") {
+        display: block;
+        padding: 20px 50px;
+    }
+}
+.bl_header_nav_list{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 50px;
+}
+.bl_header_nav_listItem{
+    transition: all 0.3s;
+    white-space: nowrap;
+
+    &:hover{
+        opacity: 0.7;
+    }
+}
+// アクティブ時
+.bg-active .bl_header_nav{
+    background: g.$bg-white-opa50;
+    backdrop-filter: blur(5px);
+}
+.bg-active .bl_header_nav_listItem{
+    color: g.$font-color-base;
+}
